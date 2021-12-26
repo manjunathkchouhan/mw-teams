@@ -1,0 +1,79 @@
+<div class="main-container">
+  <div class="row">
+      <div class="col-md-12 col-12">
+          <div class="card">
+              <div class="card-header card-header-primary">
+                  <h5 class="card-title"> <a (click)="goBack()"
+                      class="{{iconService.fa_icons.back}}"></a>&nbsp;&nbsp; {{titleService.titles.admin_view_users}}
+                </h5>
+                <div class="icon add-icon">
+                  <i class="{{iconService.fa_icons.plus}}" aria-hidden="true" matTooltip="{{titleService.tooltip.admin_add_users}}" [routerLink]="['/admin/users/add-users']"></i>
+              </div>
+              </div>
+              <div *ngIf="allUsers && allUsers.length > 0" class="card-body">
+                  <div class="row">
+                      <div class="col-md-4 col-12">
+                          <mat-form-field>
+                              <mat-select placeholder="Filter By">
+                                  <mat-option *ngFor="let item of filterNames let i=index;" [value]="item.value">
+                                      {{item.option}}
+                                  </mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-md-8 col-12">
+                          <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Filter value" value="">
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="table-responsive">
+                      <table class="table table-borderless">
+                          <thead>
+                              <tr>
+                                  <th>First Name</th>
+                                  <th>Last Name</th>
+                                  <th>Email</th>
+                                  <th>Phone</th>
+                                  <th>Password</th>
+                                  <th>Role Id</th>
+                                  <th>Active Status</th>
+                                  <th>Login Status</th>
+                                  <th>Device Id</th>
+                                  <th>Created By</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let item of allUsers">
+                                <!-- | paginate: { itemsPerPage: 5, currentPage: p } -->
+                                  <td>{{item.first_name}}</td>
+                                  <td>{{item.last_name}}</td>
+                                  <td>{{item.email}}</td>
+                                  <td>{{item.phone_no}}</td>
+                                  <td>{{item.password}}</td>
+                                  <td>{{item.role_id}}</td>
+                                  <td>{{item.active_status}}</td>
+                                  <td>{{item.login_status}}</td>
+                                  <td>{{item.device_id}}</td>
+                                  <td>{{item.created_by}}</td>
+                                  <td>
+                               <i matTooltip="{{titleService.tooltip.view_or_Edit}}" class="{{iconService.fa_icons.edit}}" (click)="editUsers(item)"></i> &nbsp;&nbsp;
+                               <i matTooltip="{{titleService.tooltip.delete}}" class="{{iconService.fa_icons.delete}}" (click)="deleteUser(item)"></i>
+                                  </td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+                  <!-- <div align="end" style="padding: 0px !important;">
+                      <pagination-controls (pageChange)="pagination($event)" previousLabel="" nextLabel="" autoHide="true" responsive="true"></pagination-controls>
+                  </div> -->
+              </div>
+              <div *ngIf="allUsers.length === 0" class="card-body">
+                <p style="text-align: center;">No record found!</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

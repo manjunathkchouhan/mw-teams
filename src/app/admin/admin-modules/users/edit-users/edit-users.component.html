@@ -1,0 +1,111 @@
+<div class="main-container">
+  <div class="row">
+      <div class="col-md-12 col-12">
+          <div class="card">
+              <div class="card-header card-header-primary">
+                  <h5 class="card-title">
+                      <a (click)="goBack()"
+                          class="{{iconService.fa_icons.back}}"></a>&nbsp;&nbsp;{{titleService.titles.admin_edit_users}}
+                  </h5>
+              </div>
+              <div class="card-body">
+                  <form [formGroup]="editUserForm" (ngSubmit)="editedUserFormSubmit()" autocomplete="off">
+                      <div class="row">
+                          <div class="col-md-6 col-12">
+                              <mat-form-field class="example-full-width">
+                                  <input type="text" matInput placeholder="First Name" formControlName="first_name" value="" required>
+                                  <mat-error *ngIf="!editUserForm.controls['first_name'].valid && editUserForm.controls['first_name'].touched">
+                                      Firstname is required</mat-error>
+                              </mat-form-field>
+                          </div>
+                          <div class="col-md-6 col-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" matInput placeholder="Last Name" formControlName="last_name" value="" required>
+                                <mat-error *ngIf="!editUserForm.controls['last_name'].valid && editUserForm.controls['last_name'].touched">
+                                    Lastname is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <mat-form-field class="example-full-width">
+                              <input type="text" matInput placeholder="email" formControlName="email" value="" required>
+                              <mat-error *ngIf="!editUserForm.controls['email'].valid && editUserForm.controls['email'].touched">
+                                Email is required</mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Phone" formControlName="phone_no" value="" required>
+                            <mat-error *ngIf="!editUserForm.controls['phone_no'].valid && editUserForm.controls['phone_no'].touched">
+                              Phone is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Password" formControlName="password" value="" required>
+                          <mat-error *ngIf="!editUserForm.controls['password'].valid && editUserForm.controls['password'].touched">
+                            Password is required</mat-error>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <!-- <mat-form-field class="example-full-width">
+                        <input type="text" matInput placeholder="Role Id" formControlName="role_id" value="" required>
+                        <mat-error *ngIf="!editUserForm.controls.role_id.valid && editUserForm.controls.role_id.touched">
+                          Role Id is required</mat-error>
+                    </mat-form-field> -->
+                    <mat-form-field class="example-full-width">
+                      <mat-select placeholder="Select Role"  formControlName="role_id" required >
+                        <mat-option *ngFor="let role of roles" value="{{role.role_name}}">{{role.role_name}}</mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="!editUserForm.controls['role_id'].valid && editUserForm.controls['role_id'].touched">
+                        Role is required</mat-error>
+                    </mat-form-field>
+                </div>
+                      <div class="col-md-6 col-12">
+                        <!-- <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Active Status" formControlName="active_status" value="" required>
+                            <mat-error *ngIf="!editUserForm.controls.active_status.valid && editUserForm.controls.active_status.touched">
+                              Active Status is required</mat-error>
+                        </mat-form-field> -->
+                        <mat-form-field class="example-full-width">
+                          <mat-select placeholder="Select active status"  formControlName="active_status" required >
+                            <mat-option *ngFor="let status of activeStatus" value="{{status.active_status}}">{{status.active_status}}</mat-option>
+                          </mat-select>
+                            <!-- <input type="text" matInput placeholder="Active Status" formControlName="active_status" value="" required> -->
+                            <mat-error *ngIf="!editUserForm.controls['active_status'].valid && editUserForm.controls['active_status'].touched">
+                              Active Status is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                      <!-- <div class="col-md-6 col-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput placeholder="Login Status" formControlName="login_status" value="" required>
+                            <mat-error *ngIf="!editUserForm.controls.login_status.valid && editUserForm.controls.login_status.touched">
+                              Login Status is required</mat-error>
+                        </mat-form-field>
+                    </div> -->
+                    <!-- <div class="col-md-6 col-12">
+                      <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Device Id" formControlName="device_id" value="" required>
+                          <mat-error *ngIf="!editUserForm.controls.device_id.valid && editUserForm.controls.device_id.touched">
+                            Device Id is required</mat-error>
+                      </mat-form-field>
+                  </div> -->
+                    <!-- <div class="col-md-6 col-12">
+                      <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Created By" formControlName="created_by" value="" required>
+                          <mat-error *ngIf="!editUserForm.controls.created_by.valid && editUserForm.controls.created_by.touched">
+                            Created By is required</mat-error>
+                      </mat-form-field>
+                  </div> -->
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12 col-12">
+                              <button mat-raised-button class="btn-cancel" (click)="goBack()">Cancel</button>
+                              <button class="pull-right btn-submit" [disabled]="editUserForm.invalid" mat-raised-button>Submit</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

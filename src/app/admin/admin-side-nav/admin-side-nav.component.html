@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-12">
+                  <img height="75" width="225" src="../../../../../assets/logo.jpg">
+              </div>
+          </div>
+      </div>
+      <hr>
+      <mat-nav-list class="nav-link">
+          <a *ngFor="let menuItem of menuItems" mat-list-item [routerLink]="[menuItem.path]" routerLinkActive="active">
+              <i class="material-icons">{{menuItem.icon}}</i>&nbsp;
+              <span class="navbar-text">{{menuItem.title}}</span>
+          </a>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <mat-toolbar class="home-toolbar" *ngIf="isHandset$ | async">
+          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+          <span>Mushroom Dashboard</span>
+      </mat-toolbar>
+      <div class="main-content">
+          <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

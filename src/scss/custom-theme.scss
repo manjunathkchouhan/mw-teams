@@ -1,0 +1,76 @@
+    // Nav colors
+    $nav-icon-color:#E53935; //#E53935,9C27B0
+    $nav-text-color:#5f5858; //5f5858
+    $nav-font-family:'Montserrat',
+    sans-serif;
+    $nav-selected-background:#E53935;
+    $nav-selected-color:#fff;
+    // Body Colors
+    $body-background-color:#fff;
+    // header colors
+    $header-background-color:#fff;
+    $header-title-color:#E53935;
+    $header-title-font-family:'Montserrat',
+    sans-serif;
+    $header-icon-color:black !important;
+    $header-profile-color:#F44336;
+    $header-profile-text-color:#fff;
+    $header-profile-text-font-family:'Montserrat',
+    sans-serif;
+    ;
+    $header-profile-subItem-background-color: white !important;
+    $header-profile-subItem-color: black !important;
+    // footer colors
+    $footer-color:black !important;
+    // mat-tab colors
+    $mat-tab-background-color:linear-gradient(130deg, rgb(212, 29, 38) 0%, (219, 19, 19) 100%);
+    $mat-tab-text-color: #fff;
+    $mat-tab-background-active-color: #E53935 !important;
+    // Button colors and styles
+    $button-primary-background-color:#F44336 !important;
+    $button-primary-background-hover-color:#F44336 !important;
+    $button-primary-color:#fff !important;
+    $button-cancel-background-color:grey !important;
+    $button-cancel-color:#fff !important;
+    $button-font-family:'Montserrat',
+    sans-serif !important;
+    // Card colors and styles
+    $card-header-background-color:linear-gradient(130deg, rgb(212, 29, 38) 0%, rgb(219, 19, 19) 100%);
+    $card-header1-background-color:#fff;
+    $card-title-color:#fff;
+    $card-title1-color:#fff;
+    $card-font-family: 'Montserrat',
+    sans-serif;
+    $card-background-color: white !important;
+    // table Styles
+    $table-header-background-color:#F44336;
+    $table-header-text-color:#fff;
+    $table-header-font-family:'Montserrat',
+    sans-serif !important;
+    $table-data-font-family:'Roboto',
+    sans-serif !important;
+    $table-data-color:grey;
+    $table-td-highlet-color:#F44336;
+    // radio and Slider Styles
+    $radio-color:#F44336 !important;
+    $slider-color:#F44336 !important;
+    $radio-slider-inner:rgb(236, 12, 12) !important;
+    $radio-slider-outer:#F44336 !important;
+    // error
+    $error-color:red !important;
+    //add icon plus
+    $add-plus-color:#fff;
+    //input color
+    $mat-form-field-color:lightgrey;
+    //slide toggle
+    $slide-toggle-color:#F44336;
+    //nav box shadow
+    $nav-box-shadow-color:0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    //spinner color
+    $spinner-background-color:rgba(0, 0, 0, 0.3);
+    //mat radio
+    $mat-radio-outer-circle-border-color:#F44336 !important;
+    $mat-radio-inner-circle-border-color:#F44336 !important;
+    $mat-radio-background-color:#F44336 !important;

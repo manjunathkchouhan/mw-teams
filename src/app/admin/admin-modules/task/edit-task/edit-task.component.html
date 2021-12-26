@@ -1,0 +1,115 @@
+<div class="main-container">
+  <div class="row">
+      <div class="col-md-12 col-12">
+          <div class="card">
+              <div class="card-header card-header-primary">
+                  <h5 class="card-title">
+                      <a (click)="goBack()"
+                          class="{{iconService.fa_icons.back}}"></a>&nbsp;&nbsp;{{titleService.titles.admin_add_projects}}
+                  </h5>
+              </div>
+              <div class="card-body">
+                <form [formGroup]="createTask"(ngSubmit)="createTaskSubmit()" autocomplete="off">
+                  <div class="row">
+                      <div class="col-md-6 col-12">
+                          <mat-form-field class="example-full-width">
+                              <input type="text" matInput placeholder="Task Title" formControlName="task_title" value="" required>
+                              <mat-error *ngIf="!createTask.controls['task_title'].valid && createTask.controls['task_title'].touched">
+                                  Task title is required</mat-error>
+                          </mat-form-field>
+                      </div>
+                      <div class="col-md-6 col-12">
+                        <mat-form-field class="example-full-width">
+                          <input type="text"
+                                 placeholder="Search for a project"
+                                 matInput
+                                formControlName='project_id'
+                                 [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                              {{option}}
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-12">
+                      <mat-form-field class="example-full-width">
+                          <input type="text" matInput placeholder="Description" formControlName="description" value="" required>
+                          <mat-error *ngIf="!createTask.controls['description'].valid && createTask.controls['description'].touched">
+                              Description is required</mat-error>
+                      </mat-form-field>
+                  </div>
+                  <div class="col-md-6 col-12">
+                    <mat-form-field class="example-full-width">
+                      <mat-select placeholder="Select task priority"  formControlName="task_priority" required >
+                        <mat-option *ngFor="let task of taskPriorities" value="{{task.task_priority}}">{{task.task_priority}}</mat-option>
+                      </mat-select>
+                        <mat-error *ngIf="!createTask.controls['task_priority'].valid && createTask.controls['task_priority'].touched">
+                          Task priority required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Choose a start date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="start_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 col-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Choose a end date</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="end_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 col-12">
+                  <mat-form-field class="example-full-width">
+                      <input type="text" matInput placeholder="Interval Expression" formControlName="interval_expression" value="" required>
+                      <mat-error *ngIf="!createTask.controls['interval_expression'].valid && createTask.controls['interval_expression'].touched">
+                        Interval Expression is required</mat-error>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-6 col-12">
+                <mat-form-field class="example-full-width">
+                    <input type="text" matInput placeholder="Task Status" formControlName="task_status" value="" required>
+                    <mat-error *ngIf="!createTask.controls['task_status'].valid && createTask.controls['task_status'].touched">
+                      Task status is required</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6 col-12">
+              <mat-form-field class="example-full-width">
+                  <input type="text" matInput placeholder="Attachment" formControlName="has_attachment" value="" required>
+                  <mat-error *ngIf="!createTask.controls['has_attachment'].valid && createTask.controls['has_attachment'].touched">
+                    Attachment is required</mat-error>
+              </mat-form-field>
+          </div> -->
+          <div class="col-md-6 col-12">
+            <mat-form-field class="example-full-width">
+                <input type="text" matInput placeholder="Task Completion" formControlName="task_completion" value="" required>
+                <mat-error *ngIf="!createTask.controls['task_completion'].valid && createTask.controls['task_completion'].touched">
+                  Task completion is required</mat-error>
+            </mat-form-field>
+        </div>
+              <div class="col-md-6 col-12">
+                <mat-form-field class="example-full-width">
+                    <input type="text" matInput placeholder="Task Interval" formControlName="task_interval" value="" required>
+                    <mat-error *ngIf="!createTask.controls['task_interval'].valid && createTask.controls['task_interval'].touched">
+                        Task interval is required</mat-error>
+                </mat-form-field>
+            </div>
+
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12 col-12">
+                          <button mat-raised-button class="btn-cancel" (click)="goBack()">Cancel</button>
+                          <button class="pull-right btn-submit" [disabled]="createTask.invalid" mat-raised-button>Submit</button>
+                      </div>
+                  </div>
+              </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

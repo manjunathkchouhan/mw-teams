@@ -1,0 +1,202 @@
+@import "./custom-theme.scss";
+// heddings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+//Card
+.card {
+    padding-bottom: 10px;
+    border-radius: 6px;
+}
+
+.card [class*="card-header-"]:not(.card-header-icon):not(.card-header-text):not(.card-header-image) {
+    border-radius: 3px;
+    margin-top: -20px;
+    padding: 7px;
+}
+
+.card-title {
+    color: $card-title-color;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 12px 0 0 10px;
+    letter-spacing: 1px;
+}
+
+
+.card-header {
+    background: $card-header-background-color !important;
+}
+
+.card-subtitle {
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.custom-tabs-card {
+    margin-top: 30px;
+}
+
+.card [class*="card-header-"] {
+    margin: 0px 15px 0;
+    padding: 0;
+    position: relative;
+}
+
+//Add icon
+.add-icon {
+    position: absolute;
+    right: 40px;
+    font-size: 1.5rem;
+    bottom: 10px;
+    cursor: pointer;
+    color: $add-plus-color;
+}
+
+//Input Fields
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: $mat-form-field-color !important;
+}
+
+.mat-form-field {
+    font-size: 14px !important;
+    // color: $mat-form-field-color !important;
+    width: 100%;
+}
+
+
+/*upArrow in number input field*/
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input.mat-input-element {
+    color: black;
+}
+
+//Slide toggle
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: $radio-slider-outer;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: $radio-slider-inner;
+}
+
+.mat-slide-toggle.mat-accent .mat-ripple-element {
+    background-color: $slide-toggle-color !important;
+}
+
+//buttons
+.btn-cancel {
+    text-transform: uppercase;
+    border-radius: 5px !important;
+    font-family: $button-font-family;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    color: $button-cancel-color;
+    font-weight: 500 !important;
+    background: $button-cancel-background-color;
+    line-height: normal !important;
+    min-width: auto !important;
+    cursor: pointer;
+}
+
+.btn-submit {
+    text-transform: uppercase !important;
+    border-radius: 5px !important;
+    font-family: $button-font-family;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    color: $button-primary-color;
+    font-weight: 500 !important;
+    background-color: $button-primary-background-color;
+    line-height: normal !important;
+    cursor: pointer;
+    border: 0;
+}
+
+.btn-submit:hover {
+    background-color: $button-primary-background-hover-color;
+}
+
+.btn-submit.btn-sm {
+    padding: 5px 10px !important;
+}
+
+//table
+.tdHighlet {
+    cursor: pointer;
+    color: $table-td-highlet-color !important;
+}
+
+
+/* Absolute Center Spinner */
+
+.mat-spinner {
+    position: relative;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+.loading-indicator {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* Transparent Overlay */
+
+.loading-indicator:before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $spinner-background-color !important;
+}
+
+// radio buttons
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $mat-radio-outer-circle-border-color;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: $mat-radio-background-color;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $mat-radio-inner-circle-border-color;
+}
+
