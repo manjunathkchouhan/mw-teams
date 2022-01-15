@@ -8,13 +8,17 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from 'src/app/pipe/filter.pipe';
+
 
 
 @NgModule({
   declarations: [
     AddCategoryComponent,
     ViewCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxPaginationModule
   ]
 })
 export class CategoryModule { }

@@ -11,46 +11,50 @@
               </div>
               </div>
               <div *ngIf=" allCategories && allCategories?.length > 0" class="card-body">
+                <mat-spinner *ngIf="isLoading"></mat-spinner>
+                <div *ngIf="!isLoading">
                   <div class="row">
-                      <div class="col-md-4 col-12">
-                          <mat-form-field>
-                              <mat-select placeholder="Filter By">
-                                  <mat-option *ngFor="let item of filterNames let i=index;" [value]="item.value">
-                                      {{item.option}}
-                                  </mat-option>
-                              </mat-select>
-                          </mat-form-field>
-                      </div>
-                      <div class="col-md-8 col-12">
-                          <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Filter value" value="">
-                          </mat-form-field>
-                      </div>
-                  </div>
-                  <div  class="table-responsive">
-                      <table class="table table-borderless">
-                          <thead>
-                              <tr>
-                                  <th>Category Name</th>
-                                  <th>Action</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let item of allCategories">
-                                <!-- | paginate: { itemsPerPage: 5, currentPage: p } -->
-                                  <td>{{item.category}}</td>
-                                  <td>
-                               <i matTooltip="{{titleService.tooltip.view_or_Edit}}" class="{{iconService.fa_icons.edit}}" (click)="editCategory(item)"></i> &nbsp;&nbsp;
-                               <i matTooltip="{{titleService.tooltip.delete}}" class="{{iconService.fa_icons.delete}}"  (click)="deleteCategory(item)"></i>
-                                  </td>
-                              </tr>
+                    <div class="col-md-4 col-12">
+                        <mat-form-field>
+                            <mat-select placeholder="Filter By" #attrValue>
+                                <mat-option *ngFor="let item of filterNames let i=index;" [value]="item.value">
+                                    {{item.option}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-8 col-12">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Filter value"  [(ngModel)]="searchString" value="" (keyup)="filterByValidation(attrValue.value)">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div  class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Category Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of allCategories | filter : attrValue.value : searchString | paginate: { itemsPerPage: 5, currentPage: p }">
+                              <!-- | paginate: { itemsPerPage: 5, currentPage: p } -->
+                                <td>{{item.category}}</td>
+                                <td>
+                             <i matTooltip="{{titleService.tooltip.view_or_Edit}}" class="{{iconService.fa_icons.edit}}" (click)="editCategory(item)"></i> &nbsp;&nbsp;
+                             <i matTooltip="{{titleService.tooltip.delete}}" class="{{iconService.fa_icons.delete}}"  (click)="deleteCategory(item)"></i>
+                                </td>
+                            </tr>
 
-                          </tbody>
-                      </table>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+
+                  <div align="end" style="padding: 0px !important;">
+                      <pagination-controls (pageChange)="pagination($event)" previousLabel="Prev" nextLabel="Next" [autoHide]='true' [responsive]='true'></pagination-controls>
                   </div>
-                  <!-- <div align="end" style="padding: 0px !important;">
-                      <pagination-controls (pageChange)="pagination($event)" previousLabel="" nextLabel="" autoHide="true" responsive="true"></pagination-controls>
-                  </div> -->
               </div>
               <div *ngIf="allCategories.length === 0" class="card-body">
                 <p style="text-align: center;">No record found!</p>

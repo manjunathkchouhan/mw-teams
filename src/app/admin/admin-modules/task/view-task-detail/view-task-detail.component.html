@@ -1,0 +1,37 @@
+<div class="main-container">
+  <div class="row">
+      <div class="col-md-12 col-12">
+          <div class="card">
+              <div class="card-header card-header-primary">
+                  <h5 class="card-title"><a (click)="goBack()"
+                      class="{{iconService.fa_icons.back}}"></a>&nbsp;&nbsp; Task Details
+                </h5>
+                <div class="icon add-icon">
+                  <i class="{{iconService.fa_icons.plus}}" aria-hidden="true" matTooltip="{{titleService.tooltip.admin_add_sub_task}}" routerLink="/admin/tasks/add-sub-task" [state]="{ item: singleTask}"></i>
+              </div>
+              </div>
+              <div  class="card-body">
+                <div class="row">
+                  <div class="col-md-12 mt-3"><span class="sp">Task: </span><strong>{{singleTask.task_title}}</strong></div>
+                  <div class="col-md-6  mt-3"><span class="sp">Project: </span>{{singleTask.project_title}}</div>
+                  <div class="col-md-6  mt-3"><span class="sp">Category: </span>{{singleTask.category}}</div>
+                  <div class="col-md-12  mt-3"><span class="sp">Description: </span>{{singleTask.description}}</div>
+                  <div class="col-md-3  mt-3"><span class="sp">Start Date: </span>{{singleTask.start_date}}</div>
+                  <div class="col-md-3 mt-3"><span class="sp">End Date: </span>{{singleTask.end_date}}</div>
+                  <div class="col-md-3 mt-3"><span class="sp">Time Left: </span>1 day </div>
+                  <div class="col-md-3 mt-3"><span class="sp">Priority: </span><strong>{{singleTask.task_priority}}</strong></div>
+                  <div class="col-md-6  mt-3"><span class="sp">Task Status: </span><strong>{{singleTask.task_priority}}</strong></div>
+                  <div class="col-md-6 mt-3"><span class="sp">Completion: </span>0 %</div>
+                  <div class="col-md-6  mt-3"><span class="sp">Attachments: </span><a class="link" href="{{singleTask.source_location}}" target="_blank">Open file</a></div>
+                  <div class="col-md-6 mt-3"><span class="sp">Users: </span><a class="link" (click)="openDialog()" >Click here to view users</a></div>
+                  <div class="col-md-12  mt-3"><span class="sp">Sub Task:</span></div>
+                  <div class="col-md-12">Sub Task list one</div>
+                  <div class="col-md-12">Sub Task list two</div>
+                  <div class="col-md-12">Sub Task list three</div>
+                  <div class="col-md-12">Sub Task list four</div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

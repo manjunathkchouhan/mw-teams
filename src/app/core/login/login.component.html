@@ -20,8 +20,7 @@
 </div> -->
 
 
-<mat-card>
-  <!-- <mat-card-title  >Mushroom World</mat-card-title> -->
+<!-- <mat-card>
 <mat-card-content>
 <form [formGroup]="loginForm" (ngSubmit)="submit()">
 <p>
@@ -46,5 +45,54 @@
 
 </form>
 </mat-card-content>
-<!-- <a routerLink="/core/SignUp">SignUp</a> -->
-</mat-card>
+</mat-card> -->
+<div class="container log-padTop">
+  <div class="row">
+    <div class="offset-md-3 col-md-6 offset-md-3">
+      <div class="row">
+        <!-- <div class="col-md-12 text-center logo">
+          <a [routerLink]="['/']"><img src="../../assets/logo.jpg" height="100" width="530" alt="logo"></a>
+        </div> -->
+        <div class="col-md-12">
+          <div class="card">
+
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">
+                LOGIN</h4>
+            </div>
+            <div class="card-body">
+              <mat-spinner *ngIf="isLoading"></mat-spinner>
+              <form [formGroup]="loginForm"  (ngSubmit)="submit()" *ngIf="!isLoading">
+                <div class="col-md-12">
+                  <mat-form-field class="full-width-input">
+                    <input type="email" formControlName="email"  matInput placeholder="Username" value="" required autocomplete="off">
+                    <!-- <mat-error *ngIf="!loginForm.get('email').valid">Enter valid username</mat-error> -->
+                    <mat-error *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">
+                      Password is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="full-width-input">
+                    <input formControlName="password" type="password" matInput placeholder="Password"  required>
+                    <!-- <mat-error *ngIf="!loginForm.valid">Enter your Password</mat-error> -->
+                    <mat-error *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">
+                      Password is required</mat-error>
+                  </mat-form-field>
+                  <p class="para-text forgot-pass pull-right" [routerLink]="['/password-recovery']">Forgot Password?</p>
+                </div>
+
+                  <div class="col-md-2">
+                    <!-- <button [disabled]="!loginForm.valid" class="custom-button" type="submit" mat-raised-button>Login</button> -->
+                    <button class="btn-submit" [disabled]="!loginForm.valid" *ngIf="!isLoading" mat-raised-button>Login</button>
+                  </div>
+                  <!-- <div class="col-md-12 login-error mt-3 mr-1">
+                    <p>{{loginAttemptsMessage}}</p>
+                  </div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

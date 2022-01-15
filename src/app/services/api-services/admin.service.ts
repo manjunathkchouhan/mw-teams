@@ -30,6 +30,10 @@ export class AdminService {
   }
 
   getActiveStatus(){
-    return this.http.get(this.url + '/roles.php?method=getActiveStatus');
+    return this.http.get(this.url + '/required_data.php?method=getActiveStatus');
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('loggedId');
   }
 }

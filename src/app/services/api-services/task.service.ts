@@ -15,7 +15,7 @@ export class TaskService {
   }
 
   getTaskPriorities(){
-    return this.http.get(this.url + '/tasks.php?method=getTaskPriorities');
+    return this.http.get(this.url + '/required_data.php?method=getTaskPriorities');
   }
   getTask(){
 
@@ -41,5 +41,24 @@ export class TaskService {
   deleteSubTask(subTaskId){
     return this.http.post(this.url + '/tasks.php?method=deleteSubTask', subTaskId);
   }
+  getUsers(){
+    return this.http.get(this.url + '/tasks.php?method=getUsersForTask');
+  }
+  getProjectsTask(){
+    return this.http.get(this.url + '/tasks.php?method=getProjectsForTask');
+  }
+  getTaskIntervals(){
+    return this.http.get(this.url + '/required_data.php?method=getTaskIntervals');
+  }
+  getWeekDays(){
+    return this.http.get(this.url + '/required_data.php?method=getWeekDays');
+  }
+  getAllTasks(loggedUser){
+    return this.http.post(this.url + '/tasks.php?method=getTasksList', loggedUser);
+  }
+  getTaskDetails(taskId){
+    return this.http.post(this.url + '/tasks.php?method=getTaskDetails',taskId);
+  }
 }
+
 

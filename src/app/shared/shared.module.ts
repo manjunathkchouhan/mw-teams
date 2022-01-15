@@ -38,6 +38,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatDialogModule} from '@angular/material/dialog';
 // import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 
@@ -45,6 +46,10 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { HeaderComponent } from './header/header.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SideNavComponent } from './side-nav/side-nav.component';
+
 
 const materialModules = [
   CdkTreeModule,
@@ -80,7 +85,7 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatNativeDateModule,
-
+  MatDialogModule
 ];
 
 
@@ -89,19 +94,24 @@ const materialModules = [
     FooterComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    HeaderComponent,
+    SideNavComponent
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     HighchartsChartModule,
+    FlexLayoutModule,
     ...materialModules,
   ],
   exports: [
     FooterComponent,
+    HeaderComponent,
     AreaComponent,
     CardComponent,
     PieComponent,
+    SideNavComponent,
     ...materialModules
   ]
 })

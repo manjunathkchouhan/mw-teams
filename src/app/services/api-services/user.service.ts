@@ -22,8 +22,9 @@ export class UserService {
     // }
     return this.http.post(this.url + '/users.php?method=addNewUser', userData);
   }
-  getUsers(){
-    return this.http.get(this.url + '/users.php?method=getUsers');
+  getUsers(user){
+    // console.log(user);
+    return this.http.post(this.url + '/users.php?method=getUsersList', user);
   }
   updateUser(userData){
     return this.http.post(this.url + '/users.php?method=updateUser', userData);

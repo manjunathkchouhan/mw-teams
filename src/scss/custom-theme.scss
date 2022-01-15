@@ -1,15 +1,15 @@
     // Nav colors
-    $nav-icon-color:#E53935; //#E53935,9C27B0
+    $nav-icon-color:#F44336; //#F44336,9C27B0
     $nav-text-color:#5f5858; //5f5858
     $nav-font-family:'Montserrat',
     sans-serif;
-    $nav-selected-background:#E53935;
+    $nav-selected-background:#F44336;
     $nav-selected-color:#fff;
     // Body Colors
     $body-background-color:#fff;
     // header colors
     $header-background-color:#fff;
-    $header-title-color:#E53935;
+    $header-title-color:#F44336;
     $header-title-font-family:'Montserrat',
     sans-serif;
     $header-icon-color:black !important;
@@ -23,9 +23,9 @@
     // footer colors
     $footer-color:black !important;
     // mat-tab colors
-    $mat-tab-background-color:linear-gradient(130deg, rgb(212, 29, 38) 0%, (219, 19, 19) 100%);
+    $mat-tab-background-color:linear-gradient(130deg, rgb(244,67,54) 0%, rgb(219, 19, 19) 100%);
     $mat-tab-text-color: #fff;
-    $mat-tab-background-active-color: #E53935 !important;
+    $mat-tab-background-active-color: #F44336 !important;
     // Button colors and styles
     $button-primary-background-color:#F44336 !important;
     $button-primary-background-hover-color:#F44336 !important;
@@ -35,7 +35,7 @@
     $button-font-family:'Montserrat',
     sans-serif !important;
     // Card colors and styles
-    $card-header-background-color:linear-gradient(130deg, rgb(212, 29, 38) 0%, rgb(219, 19, 19) 100%);
+    $card-header-background-color:linear-gradient(130deg, rgb(244,67,54) 0%, rgb(219, 19, 19) 100%);
     $card-header1-background-color:#fff;
     $card-title-color:#fff;
     $card-title1-color:#fff;

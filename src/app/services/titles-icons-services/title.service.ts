@@ -42,6 +42,9 @@ export class TitleService {
 
    //task
    admin_add_task: "Add Task",
+
+   //sub task
+   admin_add_sub_task: "Add Sub Task",
   }
 
   public btn={

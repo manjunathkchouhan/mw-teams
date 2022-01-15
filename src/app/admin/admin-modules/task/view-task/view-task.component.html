@@ -3,7 +3,7 @@
       <div class="col-md-12 col-12">
           <div class="card">
               <div class="card-header card-header-primary">
-                  <h5 class="card-title"> <a (click)="goBack()"
+                  <h5 class="card-title"><a (click)="goBack()"
                       class="{{iconService.fa_icons.back}}"></a>&nbsp;&nbsp; {{titleService.titles.admin_view_task}}
                 </h5>
                 <div class="icon add-icon">
@@ -34,28 +34,27 @@
                               <tr>
                                 <th>Task Title</th>
                                   <th>Project Name</th>
-                                  <th>Description</th>
                                   <th>Task Priority</th>
                                   <th>Start Date</th>
                                   <th>End Date</th>
                                   <th>Task Status</th>
-                                  <th>Action</th>
+                                  <th>Created By</th>
+                                  <!-- <th>Action</th> -->
                               </tr>
                           </thead>
                           <tbody>
-                              <tr >
-                                <!-- *ngFor="let item of allProjects" -->
-                                  <td><a routerLink="/core/SignUp">Task 1</a></td>
-                                  <td>Manju Team</td>
-                                  <td>Test</td>
-                                  <td>Medium</td>
-                                  <td>2021-12-22</td>
-                                  <td>2021-12-22</td>
-                                  <td>Active</td>
-                                  <td>
+                              <tr *ngFor="let item of allTasks">
+                                  <td><a routerLink="/admin/tasks/view-task-detail" [state]="{ item: item }">{{item.task_title}}</a></td>
+                                  <td>{{item.project_title}}</td>
+                                  <td>{{item.task_priority}}</td>
+                                  <td>{{item.start_date}}</td>
+                                  <td>{{item.end_date}}</td>
+                                  <td>{{item.task_status}}</td>
+                                  <td>{{item.first_name}} {{item.last_name}}</td>
+                                  <!-- <td>
                                <i matTooltip="{{titleService.tooltip.view_or_Edit}}" class="{{iconService.fa_icons.edit}}" (click)="editProjects()"></i> &nbsp;&nbsp;
                                <i matTooltip="{{titleService.tooltip.delete}}" class="{{iconService.fa_icons.delete}}" (click)="deleteProject()"></i>
-                                  </td>
+                                  </td> -->
                               </tr>
 
                           </tbody>

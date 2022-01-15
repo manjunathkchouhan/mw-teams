@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectsService } from 'src/app/services/api-services/projects.service';
 import { IconService } from 'src/app/services/titles-icons-services/icon.service';
@@ -8,7 +8,8 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'app-view-projects',
   templateUrl: './view-projects.component.html',
-  styleUrls: ['./view-projects.component.scss']
+  styleUrls: ['./view-projects.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewProjectsComponent implements OnInit {
   allProjects = [];
@@ -19,6 +20,8 @@ export class ViewProjectsComponent implements OnInit {
   // ];
   p: number = 1;
   filterNames: any = [];
+  isLoading = false;
+  searchString2;
   constructor(
     public titleService:TitleService,
     public iconService:IconService,
@@ -30,30 +33,26 @@ export class ViewProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.filterNames = [
       {
-        option: "Name",
-        value: "Name"
-      },
-      {
-        option: "Type",
-        value: "Type"
-      },
-      {
-        option: "Bond_id",
-        value: "Bond_id"
+        option: "Project Name",
+        value: "Project Name"
       }];
 
       this.getAllProjects();
   }
   pagination(event) {
     this.p = event;
+    this.getAllProjects();
   }
   goBack(){
     this._location.back();
   }
 getAllProjects(){
+  this.isLoading = true;
   this.projectService.getProjects().subscribe((res:any) =>{
+    this.isLoading = false;
     if(res){
       this.allProjects = res;
+      console.log(this.allProjects);
     }
   })
 }
@@ -63,13 +62,20 @@ getAllProjects(){
     this.routes.navigate(['/admin/projects/edit-projects'],  {state:{data: item}});
   }
   deleteProject(item){
+    this.isLoading = true;
     let project = {
       project_id: item.project_id
     }
     this.projectService.deleteProject(project).subscribe((res:any) =>{
+      this.isLoading = false;
       if(res){
         this.getAllProjects();
       }
     })
+  }
+  filterByValidation(filterBy) {
+    if (filterBy === undefined) {
+      // this.toastr.error('Enter filter value to search');
+    }
   }
 }

@@ -1,0 +1,29 @@
+<mat-nav-list>
+  <div class="profile-card">
+      <div class="header">
+          <h4>{{loggedUser?.first_name}} {{loggedUser?.last_name}}</h4>
+          <h5>{{loggedUser?.email}}</h5>
+      </div>
+      <img src="../../assets/adminlogo.jpg" alt="Soufiane FADIL">
+  </div>
+  <mat-divider></mat-divider>
+  <a class="mt-2" *ngFor="let menuItem of menuItems" mat-list-item [routerLink]="[menuItem.path]" routerLinkActive="active">
+    <i class="material-icons">{{menuItem.icon}}</i>&nbsp;
+    <span class="navbar-text">{{menuItem.title}}</span>
+</a>
+
+  <!-- <mat-divider></mat-divider> -->
+
+  <!-- <h2 matSubheader>Tools</h2> -->
+
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+      <mat-icon>import_contacts</mat-icon>
+      Contacts
+  </a>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+      <mat-icon>contact_phone</mat-icon>
+      Leads
+  </a> -->
+
+</mat-nav-list>

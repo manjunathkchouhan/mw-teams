@@ -1,4 +1,28 @@
-<mat-sidenav-container class="sidenav-container">
+<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
+<mat-drawer-container>
+  <mat-drawer mode="side" class="sidenav" [opened]="sideBarOpen">
+     <app-side-nav></app-side-nav>
+      <!-- <mat-nav-list>
+        <div class="profile-card">
+            <div class="header">
+                <h4>{{loggedUser?.first_name}} {{loggedUser?.last_name}}</h4>
+            </div>
+            <img src="../../assets/adminlogo.jpg" alt="Soufiane FADIL">
+        </div>
+        <mat-divider></mat-divider>
+        <a class="mt-2" *ngFor="let menuItem of menuItems" mat-list-item [routerLink]="[menuItem.path]" routerLinkActive="active">
+          <i class="material-icons">{{menuItem.icon}}</i>&nbsp;
+          <span class="navbar-text">{{menuItem.title}}</span>
+      </a>
+    </mat-nav-list> -->
+  </mat-drawer>
+  <mat-drawer-content>
+      <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer></app-footer>
+<!-- <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
       <div class="container-fluid">
           <div class="row">
@@ -27,4 +51,4 @@
       </div>
       <app-footer></app-footer>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

@@ -9,34 +9,51 @@
                   </h5>
               </div>
               <div class="card-body">
-                <form [formGroup]="createProject"(ngSubmit)="createProjectSubmit()" autocomplete="off">
+                <mat-spinner *ngIf="isLoading"></mat-spinner>
+                <form [formGroup]="createProject"  (ngSubmit)="createProjectSubmit()" autocomplete="off" *ngIf="!isLoading">
                   <div class="row">
-                      <div class="col-md-6 col-12">
+                    <div class="col-md-12 col-12">
+                      <mat-form-field class="example-full-width">
+                        <mat-select placeholder="Select Category"  formControlName="category_id" required >
+                          <mat-option *ngFor="let category of allCategories" value="{{category.category}}">{{category.category}}</mat-option>
+                        </mat-select>
+                          <mat-error *ngIf="!createProject.controls['category_id'].valid && createProject.controls['category_id'].touched">
+                            Category is required</mat-error>
+                      </mat-form-field>
+                  </div>
+                      <div class="col-md-12 col-12">
                           <mat-form-field class="example-full-width">
                               <input type="text" matInput placeholder="Project Name" formControlName="project_title" value="" required>
                               <mat-error *ngIf="!createProject.controls['project_title'].valid && createProject.controls['project_title'].touched">
                                   Project Name is required</mat-error>
                           </mat-form-field>
                       </div>
-                      <div class="col-md-6 col-12">
+                      <div class="col-md-12 col-12">
                         <mat-form-field class="example-full-width">
-                            <input type="text" matInput placeholder="Description" formControlName="description" value="" required>
+                            <textarea type="text" matInput placeholder="Description" formControlName="description" value="" required></textarea>
                             <mat-error *ngIf="!createProject.controls['description'].valid && createProject.controls['description'].touched">
                                 Description is required</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6 col-12">
                       <mat-form-field class="example-full-width">
-                          <input type="text" matInput placeholder="Project Status" formControlName="project_status" value="" required>
+                        <mat-select placeholder="Project Status"  formControlName="project_status" required >
+                          <mat-option *ngFor="let status of projectStatus" value="{{status.project_status}}">{{status.project_status}}</mat-option>
+                        </mat-select>
                           <mat-error *ngIf="!createProject.controls['project_status'].valid && createProject.controls['project_status'].touched">
                             Project Status is required</mat-error>
                       </mat-form-field>
                   </div>
                   <div class="col-md-6 col-12">
                     <mat-form-field class="example-full-width">
-                        <input type="text" matInput placeholder="Active Status" formControlName="active_status" value="" required>
+                      <mat-select placeholder="Active Status"  formControlName="active_status" required >
+                        <mat-option *ngFor="let item of status" value="{{item.active_status}}">{{item.active_status}}</mat-option>
+                      </mat-select>
                         <mat-error *ngIf="!createProject.controls['active_status'].valid && createProject.controls['active_status'].touched">
                           Active Status is required</mat-error>
+                        <!-- <input type="text" matInput placeholder="Active Status" formControlName="active_status" value="" required>
+                        <mat-error *ngIf="!createProject.controls['active_status'].valid && createProject.controls['active_status'].touched">
+                          Active Status is required</mat-error> -->
                     </mat-form-field>
                 </div>
                 <!-- <div class="col-md-6 col-12">

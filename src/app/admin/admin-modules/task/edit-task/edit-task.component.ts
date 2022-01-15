@@ -67,7 +67,10 @@ export class EditTaskComponent implements OnInit {
   }
 
   getAllUsers(){
-    this.userService.getUsers().subscribe((res:any) =>{
+    const user = {
+      user_id: JSON.parse(localStorage.getItem('loggedId'))
+    }
+    this.userService.getUsers(user).subscribe((res:any) =>{
       if(res){
         this.allUsers = res;
       }

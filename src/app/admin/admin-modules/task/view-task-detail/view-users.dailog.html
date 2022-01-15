@@ -1,0 +1,21 @@
+
+<div class="card-header card-header-primary" style="padding: 0.5rem !important">
+  <h5 class="card-title">List of Users</h5>
+</div>
+<div mat-dialog-content class="mt-2">
+  <div class="row">
+    <div class="col-md-12 col-12">
+      <mat-list role="list" *ngFor="let user of userList">
+        <mat-list-item role="listitem"
+          >{{user.first_name}} {{user.last_name}}</mat-list-item
+        >
+      </mat-list>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn-submit pull-right" mat-button  cdkFocusInitial (click)="onNoClick()">Ok</button>
+    </div>
+  </div>
+</div>

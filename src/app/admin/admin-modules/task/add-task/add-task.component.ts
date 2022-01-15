@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectsService } from 'src/app/services/api-services/projects.service';
@@ -9,9 +9,7 @@ import { UserService } from 'src/app/services/api-services/user.service';
 import { TaskService } from 'src/app/services/api-services/task.service';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
-
-
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-add-task',
@@ -22,11 +20,15 @@ import {map, startWith} from 'rxjs/operators';
 export class AddTaskComponent implements OnInit {
   allUsers;
   createTask: FormGroup;
-  allProjects: any;
+  allProjects;
   taskPriorities: any;
-  filteredOptions: Observable<string[]>;
+  filteredOptions;
+  filteredUsers: Observable<string[]>;
   projectsOptions: string[] = [];
+  userOptions: string[] = [];
   myControl = new FormControl();
+  intervals: any;
+  weekDays: any;
   constructor(
     public titleService:TitleService,
     public iconService:IconService,
@@ -40,52 +42,80 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.form();
-    this.getAllUsers();
     this.getAllProjects();
     this.getAllPriorities();
+    this.getAllUsers();
+    this.getTaskInterval();
   }
 
   form(){
     this.createTask = new FormGroup({
       task_title: new FormControl("", [Validators.required]),
-      category_id: new FormControl("1"),
-      project_id: new FormControl(""),
-      description: new FormControl("", [Validators.required]),
+      category_id: new FormControl(""),
+      user_id: new FormControl("",[Validators.required]),
+      project_id: new FormControl("",[Validators.required]),
+      description: new FormControl(""),
       task_priority: new FormControl("", [Validators.required]),
       start_date: new FormControl("", [Validators.required]),
       end_date: new FormControl("", [Validators.required]),
       task_interval: new FormControl(""),
-      interval_expression: new FormControl(""),
-      task_status: new FormControl(""),
-      has_attachment: new FormControl("No"),
-      task_completion: new FormControl("0"),
-      attachment_type: new FormControl(""),
-      source_location: new FormControl(""),
-      created_by: new FormControl("1"),
+      has_attachment: new FormControl(""),
+      file_extension: new FormControl(""),
+      file_name: new FormControl(""),
+      base64_file: new FormControl(""),
+      created_by: new FormControl(JSON.parse(localStorage.getItem('loggedId'))),
     });
+
+    this.createTask.get('project_id').valueChanges.subscribe(response => {
+      console.log('data is ', response);
+      this.filterData(response);
+    })
+  }
+  filterData(enteredData){
+    console.log(enteredData);
+    this.filteredOptions = this.allProjects.filter(item => {
+      return item.project_title.toLowerCase().indexOf(enteredData.toLowerCase()) > -1
+    })
   }
   private _filter(value): string[] {
     const filterValue = value.toLowerCase();
     return this.projectsOptions.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  getAllUsers(){
-    this.userService.getUsers().subscribe((res:any) =>{
+  private userfilter(value1): string[] {
+    const filterValue1 = value1.toLowerCase();
+    return this.userOptions.filter(u => u.toLowerCase().includes(filterValue1));
+  }
+
+  getAllProjects(){
+    this.taskService.getProjectsTask().subscribe((res:any) =>{
+      console.log(res);
       if(res){
-        this.allUsers = res;
+        this.allProjects = res;
+        this.filteredOptions = res;
+        // this.allProjects.forEach(element => {
+        //       this.projectsOptions.push(element.project_title);
+        // });
+        // // console.log(this.allProjects,this.allProjects);
+        // this.filteredOptions =  this.createTask.get('project_id')!.valueChanges.pipe(
+        //   startWith(''),
+        //   map(value => this._filter(value)),
+        // );
       }
     })
   }
-  getAllProjects(){
-    this.projectService.getProjects().subscribe((res:any) =>{
+  getAllUsers(){
+    this.taskService.getUsers().subscribe((res:any) =>{
+      console.log(res);
       if(res){
-        this.allProjects = res;
-        this.allProjects.forEach(element => {
-              this.projectsOptions.push(element.project_title);
+        this.allUsers = res;
+        this.allUsers.forEach(element => {
+              this.userOptions.push(element.first_name);
         });
-        this.filteredOptions =  this.createTask.get('project_id')!.valueChanges.pipe(
+        // console.log(this.allUsers,this.userOptions);
+        this.filteredUsers =  this.createTask.get('user_id')!.valueChanges.pipe(
           startWith(''),
-          map(value => this._filter(value)),
+          map(value1 => this.userfilter(value1)),
         );
       }
     })
@@ -94,24 +124,66 @@ export class AddTaskComponent implements OnInit {
     this.taskService.getTaskPriorities().subscribe((res:any) =>{
       if(res){
         this.taskPriorities = res;
-        console.log(this.taskPriorities);
+      }
+    })
+  }
+  getTaskInterval(){
+    this.taskService.getTaskIntervals().subscribe((res: any) =>{
+      if(res){
+        this.intervals = res;
+        console.log(this.intervals);
       }
     })
   }
 
   createTaskSubmit(){
-    console.log(this.createTask.value)
+    // console.log(this.createTask.value)
+    if(this.createTask.value.has_attachment === true){
+      this.createTask.value.has_attachment = "YES"
+    }else {
+      this.createTask.value.has_attachment = "NO"
+    }
     this.createTask.value.start_date = this.datePipe.transform(this.createTask.value.start_date, 'yyyy-MM-dd');
     this.createTask.value.end_date = this.datePipe.transform(this.createTask.value.end_date, 'yyyy-MM-dd');
-    let projects = this.allProjects.filter(p => p.project_title === this.createTask.value.project_id);
-    this.createTask.value.project_id = projects[0].project_id;
-    console.log(this.createTask.value)
+    this.allProjects.filter(p =>{
+      if(p.project_title === this.createTask.value.project_id){
+        this.createTask.value.project_id = p.project_id;
+        this.createTask.value.category_id = p.category_id;
+      }
+    });
+    this.createTask.value.user_id = JSON.stringify(this.createTask.value.user_id);
+    console.log(this.createTask.value);
     this.taskService.addTask(this.createTask.value).subscribe((res: any) =>{
       console.log(res)
       if(res){
-        this.routes.navigate(['/admin/projects/view-projects']);
+        this.routes.navigate(['/admin/tasks/view-task']);
       }
     })
+  }
+  onImagePicked(event: any) {
+    //  console.log(event.target.files);
+    // file_name
+    const file = event.target.files[0];
+
+    const name = event.target.files[0].name;
+    const lastDot = name.lastIndexOf('.');
+
+    const fileName = name.substring(0, lastDot);
+    const ext = name.substring(lastDot + 1);
+    this.createTask.patchValue({ file_name: fileName });
+    this.createTask.get('file_name')?.updateValueAndValidity();
+    this.createTask.patchValue({ file_extension: "."+ ext });
+    this.createTask.get('file_extension')?.updateValueAndValidity();
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      console.log(reader.result);
+      let base64 = reader.result;
+      this.createTask.patchValue({ base64_file: base64 });
+      this.createTask.get('base64_file')?.updateValueAndValidity();
+    };
+
+    reader.readAsDataURL(file);
   }
 
   goBack(){

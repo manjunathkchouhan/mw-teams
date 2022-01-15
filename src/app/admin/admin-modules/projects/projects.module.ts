@@ -8,13 +8,16 @@ import { EditProjectsComponent } from './edit-projects/edit-projects.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ProjectFilterPipe } from 'src/app/pipe/project-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AddProjectsComponent,
     ViewProjectsComponent,
-    EditProjectsComponent
+    EditProjectsComponent,
+    ProjectFilterPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxPaginationModule
   ]
 })
 export class ProjectsModule { }

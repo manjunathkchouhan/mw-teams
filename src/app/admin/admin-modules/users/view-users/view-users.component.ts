@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/api-services/user.service';
 import { IconService } from 'src/app/services/titles-icons-services/icon.service';
@@ -8,7 +8,8 @@ import {Location} from '@angular/common';
 @Component({
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
-  styleUrls: ['./view-users.component.scss']
+  styleUrls: ['./view-users.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewUsersComponent implements OnInit {
 
@@ -20,6 +21,8 @@ export class ViewUsersComponent implements OnInit {
   // ];
   p: number = 1;
   filterNames: any = [];
+  isLoading = false;
+  searchString1;
   constructor(
     public titleService:TitleService,
     public iconService:IconService,
@@ -35,17 +38,19 @@ export class ViewUsersComponent implements OnInit {
         value: "Name"
       },
       {
-        option: "Type",
-        value: "Type"
-      },
-      {
-        option: "Bond_id",
-        value: "Bond_id"
+        option: "Email",
+        value: "Email"
       }];
       this.getAllUsers();
   }
   getAllUsers(){
-    this.userService.getUsers().subscribe((res:any) =>{
+    const user = {
+      user_id: JSON.parse(localStorage.getItem('loggedId'))
+    }
+    console.log(user);
+    this.isLoading = true;
+    this.userService.getUsers(user).subscribe((res:any) =>{
+      this.isLoading = false;
       if(res){
         this.allUsers = res;
       }
@@ -53,6 +58,7 @@ export class ViewUsersComponent implements OnInit {
   }
   pagination(event) {
     this.p = event;
+    this.getAllUsers();
   }
   goBack(){
     this._location.back();
@@ -62,14 +68,21 @@ export class ViewUsersComponent implements OnInit {
     this.routes.navigate(['/admin/users/edit-users'],  {state:{data: item}});
   }
   deleteUser(item){
+    this.isLoading = true;
     console.log(item);
     let user = {
       user_id: item.user_id
     }
     this.userService.deleteUser(user).subscribe((res:any) =>{
+      this.isLoading = false;
       if(res){
         this.getAllUsers();
       }
     })
+  }
+  filterByValidation(filterBy) {
+    if (filterBy === undefined) {
+      // this.toastr.error('Enter filter value to search');
+    }
   }
 }

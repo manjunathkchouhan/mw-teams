@@ -8,13 +8,16 @@ import { EditUsersComponent } from './edit-users/edit-users.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { UserFilterPipe } from 'src/app/pipe/user-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AddUsersComponent,
     ViewUsersComponent,
-    EditUsersComponent
+    EditUsersComponent,
+    UserFilterPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxPaginationModule
   ]
 })
 export class UsersModule { }

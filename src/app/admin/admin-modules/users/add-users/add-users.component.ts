@@ -17,6 +17,7 @@ export class AddUsersComponent implements OnInit {
   addUserForm: FormGroup;
   roles;
   activeStatus;
+  isLoading =  false;
   constructor(
     public titleService:TitleService,
     public iconService:IconService,
@@ -44,14 +45,16 @@ export class AddUsersComponent implements OnInit {
       login_status: new FormControl(""),
       fcm_token: new FormControl(""),
       device_id: new FormControl(""),
-      created_by: new FormControl("1"),
+      created_by: new FormControl("1")
     });
   }
 
   addUserFormSubmit(){
+    this.isLoading = true;
     let role = this.roles.filter(role => role.role_name === this.addUserForm.value.role_id);
     this.addUserForm.value.role_id = role[0].role_id;
     this.userService.addUser(this.addUserForm.value).subscribe((res: any) =>{
+      this.isLoading = false;
       console.log(res);
       if(res){
         this.routes.navigate(['/admin/users/view-users']);

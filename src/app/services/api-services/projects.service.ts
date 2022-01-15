@@ -31,4 +31,7 @@ export class ProjectsService {
   deleteProject(projectId){
     return this.http.post(this.url + '/projects.php?method=deleteProject', projectId);
   }
+  getProjectStatus(){
+    return this.http.get(this.url + '/required_data.php?method=getProjectStatus');
+  }
 }

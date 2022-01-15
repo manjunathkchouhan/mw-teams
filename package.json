@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "heroku-postbuild": "ng build"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -25,12 +24,12 @@
     "bootstrap": "^4.5.0",
     "highcharts": "^9.3.2",
     "highcharts-angular": "^3.0.0",
+    "ngx-mat-select-search": "^3.3.3",
+    "ngx-mat-timepicker": "^13.0.0",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "@angular/cli": "~13.1.2",
-    "@angular/compiler-cli": "~13.1.0",
-    "typescript": "~4.5.2"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.2",
@@ -45,9 +44,5 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.5.2"
-  },
-  "engines": {
-    "node": "14.18.1",
-    "npm": "6.14.15"
   }
 }
